@@ -12,16 +12,11 @@ public class LongestSubarrayOf1sAfterDeletingOneElement {
         int left = 0;
         int lastIndexOfZero = -1;
         int maxLength = 0;
-        boolean isDeleted = false;
 
         for (int right = 0; right < nums.length; right++) {
-            if (nums[right] == 0 && isDeleted) {
-                maxLength = Math.max(maxLength, right - left - 1);
+            if (nums[right] == 0) {
                 left = lastIndexOfZero + 1;
                 lastIndexOfZero = right;
-            } else if (nums[right] == 0) {
-                lastIndexOfZero = right;
-                isDeleted = true;
             }
             maxLength = Math.max(maxLength, right - left);
         }
