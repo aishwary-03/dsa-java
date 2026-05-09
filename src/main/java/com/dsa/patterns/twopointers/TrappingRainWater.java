@@ -4,35 +4,36 @@ public class TrappingRainWater {
 
     public static void main(String[] args) {
         TrappingRainWater trappingRainWater = new TrappingRainWater();
-        int trap = trappingRainWater.trap(new int[]{2, 0, 2});
-        System.out.println(trap);
+        int[] height = new int[]{5, 2, 3, 0, 2, 4};
+        System.out.println(trappingRainWater.totalWater(height));
     }
 
-    public int trap(int[] height) {
+    private int totalWater(int[] height) {
+        int totalWater = 0;
+
         int left = 0;
-        int right = height.length - 1;
         int leftMax = 0;
         int rightMax = 0;
-        int maxWater = 0;
+        int right = height.length - 1;
 
         while (left < right) {
-            if (height[left] < height[right]) {
-                if (height[left] >= leftMax) {
+            if (height[left] <= height[right]) {
+                if (leftMax < height[left]) {
                     leftMax = height[left];
                 } else {
-                    maxWater += leftMax - height[left];
+                    totalWater += leftMax - height[left];
                 }
                 left++;
             } else {
-                if (height[right] >= rightMax) {
+                if (rightMax < height[right]) {
                     rightMax = height[right];
                 } else {
-                    maxWater += rightMax - height[right];
+                    totalWater += rightMax - height[right];
                 }
                 right--;
             }
         }
-        return maxWater;
+        return totalWater;
     }
 
 }
