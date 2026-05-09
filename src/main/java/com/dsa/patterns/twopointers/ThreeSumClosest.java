@@ -6,35 +6,40 @@ public class ThreeSumClosest {
 
     public static void main(String[] args) {
         ThreeSumClosest threeSumClosest = new ThreeSumClosest();
-        int closestSum = threeSumClosest.threeSumClosest(new int[]{10, 20, 30, 40, 50, 60, 70, 80, 90}, 1);
-        System.out.println(closestSum);
+        int[] nums = new int[]{0, 0, 0};
+        System.out.println(threeSumClosest.threeSumClosest(nums, 1));
     }
 
-    public int threeSumClosest(int[] nums, int target) {
-        Arrays.sort(nums);
+    private int threeSumClosest(int[] nums, int target) {
+        int closest = Integer.MAX_VALUE;
         int minDifference = Integer.MAX_VALUE;
-        int closestSum = 0;
-        for (int i = 0; i < nums.length - 2; i++) {
+
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length -2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+
             int left = i + 1;
             int right = nums.length - 1;
+
             while (left < right) {
                 int sum = nums[i] + nums[left] + nums[right];
+
                 if (sum == target) {
-                    left++;
+                    return sum;
+                } else if (sum > target) {
                     right--;
-                } else if (sum < target) {
-                    left++;
                 } else {
-                    right--;
+                    left++;
                 }
                 int difference = Math.abs(target - sum);
                 if (difference < minDifference) {
-                    closestSum = sum;
                     minDifference = difference;
+                    closest = sum;
                 }
             }
         }
-        return closestSum;
+        return closest;
+
     }
 
 }
