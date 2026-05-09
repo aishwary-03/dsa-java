@@ -6,23 +6,25 @@ public class TwoSumII {
 
     public static void main(String[] args) {
         TwoSumII twoSumII = new TwoSumII();
-        int[] indexes = twoSumII.twoSum(new int[]{2, 7, 11, 15}, 9);
-        System.out.println(Arrays.toString(indexes));
+        int[] nums = new int[] {-1, 0};
+        System.out.println(Arrays.toString(twoSumII.twoSum(nums, -1)));
     }
 
-    public int[] twoSum(int[] numbers, int target) {
+    private int[] twoSum(int[] nums, int target) {
+
         int left = 0;
-        int right = numbers.length - 1;
+        int right = nums.length - 1;
+
         while (left < right) {
-            if (numbers[left] + numbers[right] == target) {
+            if (nums[left] + nums[right] == target) {
                 return new int[]{left + 1, right + 1};
-            } else if (numbers[left] + numbers[right] < target) {
+            } else if (nums[left] + nums[right] < target) {
                 left++;
-            } else if (numbers[left] + numbers[right] > target) {
+            } else {
                 right--;
             }
         }
-        return null;
-    }
+        return new int[]{};
 
+    }
 }
