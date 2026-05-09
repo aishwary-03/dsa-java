@@ -4,21 +4,31 @@ public class ValidPalindrome {
 
     public static void main(String[] args) {
         ValidPalindrome validPalindrome = new ValidPalindrome();
-        boolean isPalindrome = validPalindrome.isPalindrome("race a car");
-        System.out.println(isPalindrome);
+        String s = "race a car";
+        System.out.println(validPalindrome.isPalindrome(s));
     }
 
     public boolean isPalindrome(String s) {
-        s = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
         int left = 0;
         int right = s.length() - 1;
+
+        s = s.toLowerCase();
+
         while (left < right) {
-            if (s.charAt(left) != s.charAt(right)) {
-                return false;
+            if (Character.isLetterOrDigit(s.charAt(left)) && Character.isLetterOrDigit(s.charAt(right))) {
+                if (s.charAt(left) != s.charAt(right)) {
+                    return false;
+                } else {
+                    left++;
+                    right--;
+                }
+            } else if (Character.isLetterOrDigit(s.charAt(left))) {
+                right--;
+            } else {
+                left++;
             }
-            left++;
-            right--;
         }
         return true;
     }
+
 }
