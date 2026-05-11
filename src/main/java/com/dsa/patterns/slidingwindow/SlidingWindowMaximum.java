@@ -8,31 +8,27 @@ public class SlidingWindowMaximum {
 
     public static void main(String[] args) {
         SlidingWindowMaximum slidingWindowMaximum = new SlidingWindowMaximum();
-        int[] maxSlidingWindow = slidingWindowMaximum.maxSlidingWindow(new int[]{1}, 1);
-        System.out.println(Arrays.toString(maxSlidingWindow));
+        int[] nums = new int[]{1,3,1,2,0,5};
+        System.out.println(Arrays.toString(slidingWindowMaximum.maxSlidingWindow(nums, 3)));
     }
 
     public int[] maxSlidingWindow(int[] nums, int k) {
-        int n = nums.length;
-        int[] r = new int[n - k + 1];
-        int ri = 0;
-
-        Deque<Integer> queue = new ArrayDeque<>();
-        for (int i = 0; i < n; i++) {
-            if (!queue.isEmpty() && queue.peek() == i - k) {
-                queue.poll();
+        int[] result = new int[nums.length - k + 1];
+        int index = 0;
+        Deque<Integer> deque = new ArrayDeque<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (!deque.isEmpty() && deque.peek() == i - k) {
+                deque.poll();
             }
-            while (!queue.isEmpty() && nums[queue.peekLast()] < nums[i]) {
-                queue.pollLast();
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                deque.pollLast();
             }
-
-            queue.offer(i);
+            deque.offer(i);
             if (i >= k - 1) {
-                r[ri++] = nums[queue.peek()];
+                result[index++] = nums[deque.peek()];
             }
         }
-        return r;
+
+        return result;
     }
-
-
 }
