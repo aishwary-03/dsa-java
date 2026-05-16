@@ -8,8 +8,8 @@ public class RemoveNthNodeFromEndOfList {
         ListNode node4 = new ListNode(4, node5);
         ListNode node3 = new ListNode(3, node4);
         ListNode node2 = new ListNode(2, node3);
-        ListNode node1 = new ListNode(1);
-        ListNode removedNthFromEnd = removeNthNodeFromEndOfList.removeNthFromEnd(node1, 1);
+        ListNode node1 = new ListNode(1, node2);
+        ListNode removedNthFromEnd = removeNthNodeFromEndOfList.removeNthFromEndSinglePass(node1, 5);
         while (removedNthFromEnd != null) {
             System.out.println(removedNthFromEnd.val);
             removedNthFromEnd = removedNthFromEnd.next;
@@ -41,9 +41,29 @@ public class RemoveNthNodeFromEndOfList {
             count++;
             dummy = dummy.next;
         }
-
         return removed.next;
+    }
 
+    public ListNode removeNthFromEndSinglePass(ListNode head, int n) {
+        if (head == null || head.next == null) return null;
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+
+        for (int i = 0; i <=n; i++) {
+            fast = fast.next;
+        }
+
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        slow.next = slow.next.next;
+        return dummy.next;
     }
 
 }
