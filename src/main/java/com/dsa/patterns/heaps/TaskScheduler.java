@@ -5,7 +5,10 @@ import java.util.*;
 public class TaskScheduler {
 
     public static void main(String[] args) {
-
+        TaskScheduler taskScheduler = new TaskScheduler();
+        char[] tasks = {'A', 'A', 'A', 'B', 'B', 'B'};
+        System.out.println(taskScheduler.leastIntervalWithFormula(tasks, 2));
+        System.out.println(taskScheduler.leastInterval(tasks, 2));
     }
 
     public int leastInterval(char[] tasks, int n) {
