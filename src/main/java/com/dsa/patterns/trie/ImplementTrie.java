@@ -1,4 +1,4 @@
-package com.dsa.patterns.strings;
+package com.dsa.patterns.trie;
 
 public class ImplementTrie {
 
