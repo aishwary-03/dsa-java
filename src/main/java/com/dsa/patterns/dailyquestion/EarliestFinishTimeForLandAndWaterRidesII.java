@@ -8,7 +8,7 @@ public class EarliestFinishTimeForLandAndWaterRidesII {
         int[] landDuration = {4, 1};
         int[] waterStartTime = {6};
         int[] waterDuration = {3};
-        System.out.println(earliestFinishTimeForLandAndWaterRidesII.earliest(landStartTime, landDuration, waterStartTime, waterDuration));
+        System.out.println(earliestFinishTimeForLandAndWaterRidesII.earliestFinishTime(landStartTime, landDuration, waterStartTime, waterDuration));
     }
 
     public int earliestFinishTime(int[] landStartTime, int[] landDuration, int[] waterStartTime, int[] waterDuration) {
