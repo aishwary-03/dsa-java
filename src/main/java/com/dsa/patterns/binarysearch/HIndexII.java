@@ -18,6 +18,6 @@ public class HIndexII {
                 low = mid + 1;
             }
         }
-        return citations[low] >= citations.length - 1 ? citations.length - low : 0;
+        return citations[low] >= citations.length - low ? citations.length - low : 0;
     }
 }
