@@ -20,7 +20,6 @@ public class KthMissingPositiveNumber {
                 high = mid - 1;
             }
         }
-        System.out.println(low);
         return low + k;
     }
 }
